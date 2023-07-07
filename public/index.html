@@ -1,0 +1,187 @@
+<!--
+=========================================================
+* Shikshana MUI - v3.0.0
+=========================================================
+
+* Product Page: https://www.creative-tim.com/product/argon-dashboard-material-ui
+* Copyright 2022 Creative Tim (https://www.creative-tim.com)
+
+Coded by www.creative-tim.com
+
+=========================================================
+
+* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the
+Software.
+-->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#11cdef" />
+  <link rel="apple-touch-icon" sizes="76x76" href="%PUBLIC_URL%/apple-icon.png" />
+  <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+  <title>Shikshana</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin="" />
+  <link
+    href="https://fonts.googleapis.com/css?family=Material+Icons|Material+Icons+Outlined|Material+Icons+Two+Tone|Material+Icons+Round|Material+Icons+Sharp"
+    rel="stylesheet" />
+
+  <style>
+    [data-letters]:before {
+      content: attr(data-letters);
+      display: inline-block;
+      font-size: 1em;
+      width: 2.5em;
+      height: 2.5em;
+      line-height: 2.5em;
+      text-align: center;
+      border-radius: 50%;
+      background: rgb(58, 105, 190);
+      vertical-align: middle;
+      color: white;
+    }
+
+    [data-letters1]:before {
+      content: attr(data-letters1);
+      display: inline-block;
+      font-size: 1em;
+      width: 2.5em;
+      height: 2.5em;
+      line-height: 2.5em;
+      text-align: center;
+      border-radius: 50%;
+      background: rgb(58, 105, 190);
+      vertical-align: middle;
+      color: white;
+    }
+
+    :root {
+      --space: 1.2rem;
+      --hover-color: hsl(182, 49%, 57%);
+      --white: hsl(0, 0%, 97%);
+      --black: hsl(0, 0%, 4%);
+      --border-width: 3px;
+      --icon-size: 1em;
+      /* This scales with the button font size */
+      --radius: 0.25em;
+      --button-margin: calc(var(--space) / 40);
+    }
+
+    .button {
+      border-radius: var(--radius);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      --bg: var(--black);
+      background: var(--bg);
+      color: var(--white);
+      font-weight: bold;
+      padding: calc(var(--space) / 2) var(--space);
+      margin: var(--button-margin);
+      border: var(--border-width) solid var(--bg);
+    }
+
+    .button:hover {
+      --bg: var(--hover-color);
+    }
+
+    .button.is-hollow {
+      --color: var(--black);
+      background: var(--white);
+      color: var(--color);
+      border-color: var(--color);
+    }
+
+    .button.is-hollow:hover {
+      --color: var(--hover-color);
+    }
+
+    .button.is-wide {
+      width: calc(100% - calc(var(--button-margin) * 2));
+      display: flex;
+    }
+
+    .button.has-icon:after {
+      content: "";
+      width: var(--icon-size);
+      height: var(--icon-size);
+      display: inline-block;
+      margin-left: calc(var(--space) / 2);
+      -webkit-mask: var(--icon) no-repeat center center/contain;
+      mask: var(--icon) no-repeat center center/contain;
+      background: currentColor;
+    }
+
+    .icon-fire {
+      --icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><path d="M10.031 32c-2.133-4.438-0.997-6.981 0.642-9.376 1.795-2.624 2.258-5.221 2.258-5.221s1.411 1.834 0.847 4.703c2.493-2.775 2.963-7.196 2.587-8.889 5.635 3.938 8.043 12.464 4.798 18.783 17.262-9.767 4.294-24.38 2.036-26.027 0.753 1.646 0.895 4.433-0.625 5.785-2.573-9.759-8.937-11.759-8.937-11.759 0.753 5.033-2.728 10.536-6.084 14.648-0.118-2.007-0.243-3.392-1.298-5.312-0.237 3.646-3.023 6.617-3.777 10.27-1.022 4.946 0.765 8.568 7.555 12.394z"></path></svg>');
+    }
+
+    .icon-send {
+      --icon: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.016 21v-6.984l15-2.016-15-2.016v-6.984l21 9z"></path></svg>');
+    }
+
+    section {
+      padding: var(--space);
+      max-width: 55rem;
+      margin: auto;
+    }
+
+    section.hero {
+      background: dodgerblue;
+      min-height: 30vh;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    section h2,
+    section h3,
+    section h4,
+    section p {
+      margin: calc(var(--space) / 2);
+    }
+
+    section form {
+      padding: var(--space);
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    section form label {
+      display: flex;
+      flex-flow: column;
+    }
+
+    section form label span {
+      margin: calc(var(--space) / 2) 0;
+    }
+
+    section form input {
+      padding: calc(var(--space) / 2);
+    }
+
+    section form .button {
+      margin-bottom: 0;
+      align-self: flex-end;
+    }
+
+    body {
+      font-family: "Open sans", sans-serif;
+    }
+  </style>
+
+</head>
+
+<body>
+  <noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="root"></div>
+</body>
+
+</html>
